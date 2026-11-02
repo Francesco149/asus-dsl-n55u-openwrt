@@ -85,6 +85,15 @@ Chronological record of the work, including dead ends and corrections. Times are
 - Rebuild with `CONFIG_DROPBEAR_ED25519=y` and a guarded bring-up script, installed via `sysupgrade` (settings kept, ~4 min):
   Ed25519 login works, all settings survived, temporary RSA key removed.
 
+**Switch role, USB, Wi-Fi switch, upstream check (late evening)**
+- Role: cascaded L2 switch + backup AP. `owrt-switch-mode.sh` was applied with a 3-minute rollback and confirmed. No DHCP
+  offers and no RAs on the wire. Wi-Fi moved to 2.4 GHz ch 1 / 5 GHz ch 149 after a survey (the upstream AP uses 5 GHz 36-48 at 80 MHz).
+- USB: both ports enumerate card readers at 480 Mbit/s. The usb-storage kmods first failed to install (kernel hash changed when
+  they were enabled), so they went into rebuild #4 with the rfkill slide-switch mapping. sysupgrade, then the kmods installed;
+  64 GB FAT32 and 32 GB exFAT cards read fine (read-only, no file listing).
+- Slide switch tested live: off disables both APs, on re-enables them.
+- Upstream: nobody has submitted the DSL-N55U to OpenWrt (GitHub, openwrt-devel, patchwork searched).
+
 **Documentation**
 - Moved `NOTES.md` into `README.md` + `docs/`. Exported the OpenWrt port as `openwrt-port/` (patch + files + diffconfig + apply.sh).
   `git init` with a `.gitignore` that keeps vendor blobs, the OpenWrt checkout and `backup/` out of git.

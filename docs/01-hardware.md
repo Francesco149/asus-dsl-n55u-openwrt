@@ -53,7 +53,7 @@ Sources: `rc/init.c` (`case MODEL_DSLN55U`), U-Boot `common/gpio.c`, `drivers/ch
 | GPIO | Bank/pin in OpenWrt DT | Function | Polarity |
 |---|---|---|---|
 | 0 | gpio0 0 | Power LED (also used as the WPS LED by stock) | active low |
-| 1 | gpio0 1 | Wi-Fi on/off slide switch (`btn_wifi_gpio`). Reads 0 = "on", 1 = "off" (verified) | active low |
+| 1 | gpio0 1 | Wi-Fi on/off slide switch (`btn_wifi_gpio`). Reads 0 = "on", 1 = "off". Mapped in OpenWrt as an `EV_SW` `KEY_RFKILL` switch (verified) | active low |
 | 2 | gpio0 2 | "LED_INTERNET" in U-Boot | active low (assumed) |
 | 3 | gpio0 3 | **Reset button** (differs from the RT-N56U's GPIO13) | active low |
 | 22 | gpio0 22 | RTL8367R SMI **SDA** (bit-banged) | |

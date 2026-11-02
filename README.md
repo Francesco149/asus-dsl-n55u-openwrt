@@ -36,8 +36,8 @@ bit-banged SMI, GPIO22/23) and an extra DSL co-processor on switch port 0. The s
 | `sysupgrade` (keep settings) | ✅ verified: config, keys, password survive (~4 min) |
 | SSH Ed25519 keys | ✅ with `CONFIG_DROPBEAR_ED25519=y` (not in stock OpenWrt small-flash builds) |
 | LEDs (power, WAN), reset + WPS buttons | ✅ |
-| USB 2.0 ports | ❓ untested (kmods included) |
-| Wi-Fi on/off slide switch | ❌ not mapped yet (GPIO1, 0 = on) |
+| USB 2.0 ports | ✅ both ports; mass storage (FAT32/exFAT) read at ~16-24 MiB/s with `kmod-usb-storage` (built as packages) |
+| Wi-Fi on/off slide switch | ✅ `EV_SW` `KEY_RFKILL` on GPIO1: off → radios disabled, on → enabled (also applied at boot) |
 | DSL | ❌ not supported (TC3162LE co-processor, isolated on switch port 0) |
 
 ## 3. Installing OpenWrt (no serial console needed)
@@ -71,6 +71,22 @@ export DSL_LAN_IF=<your NIC>                 # default enp3s0
    country. The bring-up image also starts a WPA2 AP `DSL-N55U-setup` (key generated into `backup/`) as a fallback way in.
 
 Later upgrades use plain OpenWrt sysupgrade (LuCI → System → Backup / Flash firmware).
+
+**USB storage** packages are built alongside the image but not included in it. Install them from
+`openwrt/bin/targets/ramips/rt3883/packages/` (`kmod-usb-storage`, `kmod-fs-vfat`, `kmod-fs-exfat`, `kmod-nls-*`) with
+`apk add --no-network --allow-untrusted ...`. They must come from the **same build** as the running image (the kernel hash must match).
+
+### Using it as a cascaded switch + backup AP
+
+`scripts/owrt.sh 'sh -s' < scripts/owrt-switch-mode.sh` turns the unit into an L2 switch for a remote spot: one LAN port
+up to the main switch, the others to local devices. The RTL8367 forwards between ports in hardware at gigabit speed. The
+script:
+- makes LAN a **DHCP client** (hostname `dsl-n55u`) and keeps **192.168.1.1/24 as a fallback** management address,
+- turns off the DHCP server, IPv6 RA/DHCPv6/NDP, `odhcpd` and the ULA prefix, so there are no rogue services on the main LAN,
+- moves Wi-Fi to non-overlapping 20 MHz channels (edit `CH2`/`CH5` after a site survey).
+
+It arms a **3-minute automatic rollback** that only stops if you `touch /tmp/net-confirmed` on the router after checking
+it's still reachable. Verified here: a broadcast DHCP discover got no answer and there were zero RAs on the wire.
 
 Why not the stock web UI or rescue mode? See [docs/04-openwrt-port.md](docs/04-openwrt-port.md#image-format-constraints-why-the-flashing-plan-is-what-it-is):
 DSL rescue only writes `ih_size + 64` bytes and checks the productid, and OpenWrt's `mtdsplit` needs a kernel-only `ih_size`.
@@ -165,6 +181,7 @@ flake.nix              devShell
 | `scripts/extract.sh <zip\|trx> <out>` | Split a stock image (uImage → kernel, squashfs 3.0/LZMA rootfs, DSL trailer) and unpack it |
 | `scripts/tn.py [-s] 'cmd' ...` | Run commands over the stock telnetd; `-s` streams output live |
 | `scripts/owrt.sh 'cmd'` | Run commands on an OpenWrt-flashed unit over SSH |
+| `scripts/owrt-switch-mode.sh` | Run on the router (`owrt.sh 'sh -s' < ...`): cascaded switch + backup AP config, with auto-rollback |
 | `scripts/uimage_check.py [--rescue] <img>` | Offline replay of the bootloader's boot-time / rescue-mode image checks |
 | `scripts/flash-openwrt.sh <img> [--go]` | Install OpenWrt from the stock shell (env `HOST_IP`, default 192.168.1.10) |
 | `scripts/rescue-flash.sh [img]` | Wait for rescue mode, then TFTP a stock image (handles the U-Boot quirks) |
@@ -186,7 +203,14 @@ flake.nix              devShell
   are recorded by hash only (`loot/MANIFEST.md`). ASUS, ASUSWRT and DSL-N55U are trademarks of ASUSTeK; this project is
   not affiliated with or endorsed by ASUS.
 
-## 10. References
+## 10. Upstream status
+
+As of 2026-11-02 the DSL-N55U is **not** in OpenWrt and has never been submitted: there are no `openwrt/openwrt` PRs,
+issues or code mentioning it, and nothing on openwrt-devel or patchwork. There is only the 2024 forum feature request. The device tree,
+image recipe and `02_network` hunk in `openwrt-port/` are written to be upstreamable. The bring-up uci-defaults and
+`diffconfig` are local conveniences, not upstream material.
+
+## 11. References
 
 - ASUS GPL source `GPL_DSL_N55U_30043762736.zip` (includes the U-Boot source) and firmware images, from dlcdnets.asus.com
   via ASUS's support API (`scripts/fetch-firmware.sh`).

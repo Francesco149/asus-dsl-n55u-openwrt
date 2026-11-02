@@ -150,6 +150,29 @@ included `/etc/dropbear/authorized_keys`, the dropbear host key, `/etc/shadow` a
 after ~2 min (flash written), and SSH was back ~4 min after the start. Afterwards: Ed25519 key login works, and country IT, the
 Wi-Fi config, the 8 keys and the root password all survived. The temporary RSA key was then removed (7 Ed25519 keys remain).
 
+### Rebuild #4: Wi-Fi slide switch + USB storage (installed via sysupgrade, verified)
+- DTS: `rfkill { gpios = <&gpio0 1 GPIO_ACTIVE_LOW>; linux,input-type = <EV_SW>; linux,code = <KEY_RFKILL>; }`.
+  This is the same pattern as `rt3662_edimax_br-6475nd.dts`. `gpio-button-hotplug` reports a switch's **initial state** at boot
+  (only unpressed `EV_KEY` buttons are suppressed), and `/etc/rc.button/rfkill` handles `TYPE=switch`: "pressed" (= on)
+  sets `wireless.radioN.disabled=0`, "released" (= off) sets `=1`, both committed. `/etc/rc.button/failsafe` ignores
+  `TYPE=switch`, so the switch can't trigger failsafe.
+- Live test: off at 22:58:33 → both APs `AP-DISABLED`, torn down; on at ~22:58:47 → both `AP-ENABLED` by 22:58:52.
+- `diffconfig` gains `kmod-usb-storage`, `kmod-fs-vfat`, `kmod-fs-exfat`, `kmod-nls-{cp437,iso8859-1,utf8}` as **=m**. Enabling them
+  changes the kernel config, and so the kernel package hash (`~98073cda…` → `~ddb9eb32…`). apk then refuses to install them on
+  an older image ("kernel … breaks: kmod-…"). Image and kmods must come from the same build. Install offline with
+  `apk add --no-network --allow-untrusted` (the image's `public-key.pem` didn't match this build's package signatures).
+- USB result: both EHCI ports at high speed; a Genesys and a UGREEN multi-slot reader; a 64 GB card (FAT32) and a 32 GB card
+  (exFAT + a small FAT partition) mounted read-only; raw sequential reads of ~24 and ~16 MiB/s.
+- Image sha256 `4f69cdcc…cfa1f16`. sysupgrade (settings kept) ~4 min; the switch-mode config and user SSIDs survived.
+
+### Switch-mode deployment (verified)
+`scripts/owrt-switch-mode.sh`: LAN as a DHCP client + static fallback `mgmt` 192.168.1.1/24 on `br-lan` (added to the lan
+firewall zone), no DHCP server, `ra`/`dhcpv6`/`ndp` disabled, `odhcpd` disabled, ULA prefix removed, hostname `dsl-n55u`,
+Wi-Fi 20 MHz on non-overlapping channels. It ran with the 180 s rollback armed and was confirmed. Then, from the host: nmap
+`broadcast-dhcp-discover` got no offer, and a 25 s capture showed zero ICMPv6 RAs. Channel choice for this site: the upstream AP
+is on 2.4 GHz ch 7 and 5 GHz ch 44 at 80 MHz (36-48) + ch 100, so 2.4 GHz → ch 1, 5 GHz → **ch 149** (SRD band, 13 dBm max under
+IT/ETSI). The rt2800 driver can't do DFS, which rules out 52-140.
+
 ## After first boot: things to verify
 - `dmesg | grep -i rtl8367`: expect `RTL8367R-VB chip found` and `cpu_port:5, assigned to extif1`.
 - `swconfig dev switch0 show`, link on ports 1-4, and the physical LAN label ↔ switch port mapping.

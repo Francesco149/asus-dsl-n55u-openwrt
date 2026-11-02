@@ -3,3 +3,10 @@ CONFIG_TARGET_ramips_rt3883=y
 CONFIG_TARGET_ramips_rt3883_DEVICE_asus_dsl-n55u=y
 CONFIG_PACKAGE_luci=y
 CONFIG_DROPBEAR_ED25519=y
+# USB mass storage as installable packages (keeps the image kernel matching these kmods)
+CONFIG_PACKAGE_kmod-usb-storage=m
+CONFIG_PACKAGE_kmod-fs-vfat=m
+CONFIG_PACKAGE_kmod-fs-exfat=m
+CONFIG_PACKAGE_kmod-nls-cp437=m
+CONFIG_PACKAGE_kmod-nls-iso8859-1=m
+CONFIG_PACKAGE_kmod-nls-utf8=m

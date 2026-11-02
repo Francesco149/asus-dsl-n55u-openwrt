@@ -1,9 +1,9 @@
 diff --git a/target/linux/ramips/dts/rt3662_asus_dsl-n55u.dts b/target/linux/ramips/dts/rt3662_asus_dsl-n55u.dts
 new file mode 100644
-index 0000000..7cc3743
+index 0000000..db3d448
 --- /dev/null
 +++ b/target/linux/ramips/dts/rt3662_asus_dsl-n55u.dts
-@@ -0,0 +1,181 @@
+@@ -0,0 +1,190 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 +/*
 + * ASUS DSL-N55U (HW A1/B1): RT-N56U-class board (RT3662F + RT3092) with an
@@ -20,7 +20,8 @@ index 0000000..7cc3743
 + *
 + * Verified on hardware (OpenWrt 25.12.6): RTL8367R-VB detected, cpu_port 5 -> extif1,
 + * LAN label 1 = switch port 4, DSL co-processor on port 0 (100M), both radios AP-ENABLED.
-+ * Not mapped yet: the Wi-Fi slide switch on GPIO1 (reads 0 = "on", 1 = "off").
++ * Wi-Fi slide switch on GPIO1 (0 = "on") is an EV_SW KEY_RFKILL switch: OpenWrt's
++ * /etc/rc.button/rfkill enables the radios when "on" and disables them when "off".
 + */
 +
 +#include "rt3883.dtsi"
@@ -115,6 +116,14 @@ index 0000000..7cc3743
 +			label = "wps";
 +			gpios = <&gpio1 2 GPIO_ACTIVE_LOW>;
 +			linux,code = <KEY_WPS_BUTTON>;
++		};
++
++		/* rear "Wireless On/Off" slide switch: GPIO1 reads 0 in the "on" position */
++		rfkill {
++			label = "rfkill";
++			gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
++			linux,input-type = <EV_SW>;
++			linux,code = <KEY_RFKILL>;
 +		};
 +	};
 +
