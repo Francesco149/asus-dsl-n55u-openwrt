@@ -19,9 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-This license covers the original work in this repository. It does not cover
-third-party material referenced by it (ASUS firmware, GPL source and web UI,
-which belong to ASUSTeK Computer Inc.; OpenWrt, under its own licenses).
-See the "License" section of README.md.
