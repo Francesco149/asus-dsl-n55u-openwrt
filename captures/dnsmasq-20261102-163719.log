@@ -1,0 +1,124 @@
+Nov  2 16:37:20 dnsmasq[36741]: started, version 2.93 cachesize 150
+Nov  2 16:37:20 dnsmasq[36741]: compile time options: IPv6 GNU-getopt DBus no-UBus no-i18n IDN2 DHCP DHCPv6 no-Lua TFTP conntrack ipset nftset auth DNSSEC loop-detect inotify dumpfile
+Nov  2 16:37:20 dnsmasq[36741]: warning: no upstream servers configured
+Nov  2 16:37:20 dnsmasq-dhcp[36741]: DHCP, IP range 172.30.55.100 -- 172.30.55.150, lease time 12h
+Nov  2 16:37:20 dnsmasq-dhcp[36741]: DHCP, sockets bound exclusively to interface enp3s0
+Nov  2 16:37:20 dnsmasq[36741]: cleared cache
+Nov  2 16:37:42 dnsmasq-dhcp[36741]: 287398257 available DHCP range: 172.30.55.100 -- 172.30.55.150
+Nov  2 16:37:42 dnsmasq-dhcp[36741]: 287398257 vendor class: udhcp 1.17.4
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 DHCPDISCOVER(enp3s0) e0:3f:49:XX:XX:68 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 tags: enp3s0
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 DHCPOFFER(enp3s0) 172.30.55.142 e0:3f:49:XX:XX:68 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 requested options: 1:netmask, 3:router, 6:dns-server, 12:hostname, 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 requested options: 15:domain-name, 28:broadcast, 33:static-route, 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 requested options: 42:ntp-server, 249
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 next server: 172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  1 option: 53 message-type  2
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 54 server-identifier  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 51 lease-time  12h
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 58 T1  6h
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 59 T2  10h30m
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option:  1 netmask  255.255.255.0
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 28 broadcast  172.30.55.255
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 42 ntp-server  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option:  6 dns-server  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option:  3 router  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 available DHCP range: 172.30.55.100 -- 172.30.55.150
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 vendor class: udhcp 1.17.4
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 DHCPDISCOVER(enp3s0) e0:3f:49:XX:XX:68 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 tags: enp3s0
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 DHCPOFFER(enp3s0) 172.30.55.142 e0:3f:49:XX:XX:68 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 requested options: 1:netmask, 3:router, 6:dns-server, 12:hostname, 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 requested options: 15:domain-name, 28:broadcast, 33:static-route, 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 requested options: 42:ntp-server, 249
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 next server: 172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  1 option: 53 message-type  2
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 54 server-identifier  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 51 lease-time  12h
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 58 T1  6h
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 59 T2  10h30m
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option:  1 netmask  255.255.255.0
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 28 broadcast  172.30.55.255
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 42 ntp-server  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option:  6 dns-server  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option:  3 router  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 available DHCP range: 172.30.55.100 -- 172.30.55.150
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 vendor class: udhcp 1.17.4
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 DHCPREQUEST(enp3s0) 172.30.55.142 e0:3f:49:XX:XX:68 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 tags: enp3s0
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 DHCPACK(enp3s0) 172.30.55.142 e0:3f:49:XX:XX:68 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 requested options: 1:netmask, 3:router, 6:dns-server, 12:hostname, 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 requested options: 15:domain-name, 28:broadcast, 33:static-route, 
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 requested options: 42:ntp-server, 249
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 next server: 172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  1 option: 53 message-type  5
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 54 server-identifier  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 51 lease-time  12h
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 58 T1  6h
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 59 T2  10h30m
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option:  1 netmask  255.255.255.0
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 28 broadcast  172.30.55.255
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option: 42 ntp-server  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option:  6 dns-server  172.30.55.1
+Nov  2 16:37:45 dnsmasq-dhcp[36741]: 287398257 sent size:  4 option:  3 router  172.30.55.1
+Nov  2 16:38:15 dnsmasq[36741]: 1 172.30.55.142/35301 query[A] pool.ntp.org from 172.30.55.142
+Nov  2 16:38:15 dnsmasq[36741]: 1 172.30.55.142/35301 config pool.ntp.org is 172.30.55.1
+Nov  2 16:38:44 dnsmasq[36741]: 2 172.30.55.142/52281 query[A] pool.ntp.org from 172.30.55.142
+Nov  2 16:38:44 dnsmasq[36741]: 2 172.30.55.142/52281 config pool.ntp.org is 172.30.55.1
+Nov  2 16:38:45 dnsmasq[36741]: 3 172.30.55.142/54137 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:38:45 dnsmasq[36741]: 3 172.30.55.142/54137 config error is REFUSED (EDE: not ready)
+Nov  2 16:38:45 dnsmasq[36741]: 4 172.30.55.142/52077 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:38:45 dnsmasq[36741]: 4 172.30.55.142/52077 config error is REFUSED (EDE: not ready)
+Nov  2 16:38:45 dnsmasq[36741]: 5 172.30.55.142/33739 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:38:45 dnsmasq[36741]: 5 172.30.55.142/33739 config error is REFUSED (EDE: not ready)
+Nov  2 16:39:11 dnsmasq[36741]: 6 172.30.55.142/44375 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:39:11 dnsmasq[36741]: 6 172.30.55.142/44375 config error is REFUSED (EDE: not ready)
+Nov  2 16:39:11 dnsmasq[36741]: 7 172.30.55.142/54105 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:39:11 dnsmasq[36741]: 7 172.30.55.142/54105 config error is REFUSED (EDE: not ready)
+Nov  2 16:39:11 dnsmasq[36741]: 8 172.30.55.142/32838 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:39:11 dnsmasq[36741]: 8 172.30.55.142/32838 config error is REFUSED (EDE: not ready)
+Nov  2 16:39:16 dnsmasq[36741]: 9 172.30.55.142/58497 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:39:16 dnsmasq[36741]: 9 172.30.55.142/58497 config error is REFUSED (EDE: not ready)
+Nov  2 16:39:16 dnsmasq[36741]: 10 172.30.55.142/50483 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:39:16 dnsmasq[36741]: 10 172.30.55.142/50483 config error is REFUSED (EDE: not ready)
+Nov  2 16:39:16 dnsmasq[36741]: 11 172.30.55.142/53439 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:39:16 dnsmasq[36741]: 11 172.30.55.142/53439 config error is REFUSED (EDE: not ready)
+Nov  2 16:39:21 dnsmasq[36741]: 12 172.30.55.142/46664 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:39:21 dnsmasq[36741]: 12 172.30.55.142/46664 config error is REFUSED (EDE: not ready)
+Nov  2 16:39:21 dnsmasq[36741]: 13 172.30.55.142/36704 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:39:21 dnsmasq[36741]: 13 172.30.55.142/36704 config error is REFUSED (EDE: not ready)
+Nov  2 16:39:21 dnsmasq[36741]: 14 172.30.55.142/49087 query[PTR] 1.55.30.172.in-addr.arpa from 172.30.55.142
+Nov  2 16:39:21 dnsmasq[36741]: 14 172.30.55.142/49087 config error is REFUSED (EDE: not ready)
+Nov  2 16:39:38 dnsmasq[36741]: 15 172.30.55.142/37071 query[A] pool.ntp.org from 172.30.55.142
+Nov  2 16:39:38 dnsmasq[36741]: 15 172.30.55.142/37071 config pool.ntp.org is 172.30.55.1
+Nov  2 16:40:06 dnsmasq[36741]: 16 172.30.55.142/45850 query[A] time.nist.gov from 172.30.55.142
+Nov  2 16:40:06 dnsmasq[36741]: 16 172.30.55.142/45850 config time.nist.gov is 172.30.55.1
+Nov  2 16:40:33 dnsmasq[36741]: 17 172.30.55.142/46697 query[A] pool.ntp.org from 172.30.55.142
+Nov  2 16:40:33 dnsmasq[36741]: 17 172.30.55.142/46697 config pool.ntp.org is 172.30.55.1
+Nov  2 16:41:00 dnsmasq[36741]: 18 172.30.55.142/44824 query[A] time.nist.gov from 172.30.55.142
+Nov  2 16:41:00 dnsmasq[36741]: 18 172.30.55.142/44824 config time.nist.gov is 172.30.55.1
+Nov  2 16:41:27 dnsmasq[36741]: 19 172.30.55.142/56866 query[A] pool.ntp.org from 172.30.55.142
+Nov  2 16:41:27 dnsmasq[36741]: 19 172.30.55.142/56866 config pool.ntp.org is 172.30.55.1
+Nov  2 16:41:54 dnsmasq[36741]: 20 172.30.55.142/37552 query[A] time.nist.gov from 172.30.55.142
+Nov  2 16:41:54 dnsmasq[36741]: 20 172.30.55.142/37552 config time.nist.gov is 172.30.55.1
+Nov  2 16:42:21 dnsmasq[36741]: 21 172.30.55.142/52179 query[A] pool.ntp.org from 172.30.55.142
+Nov  2 16:42:21 dnsmasq[36741]: 21 172.30.55.142/52179 config pool.ntp.org is 172.30.55.1
+Nov  2 16:42:48 dnsmasq[36741]: 22 172.30.55.142/44620 query[A] time.nist.gov from 172.30.55.142
+Nov  2 16:42:48 dnsmasq[36741]: 22 172.30.55.142/44620 config time.nist.gov is 172.30.55.1
+Nov  2 16:43:15 dnsmasq[36741]: 23 172.30.55.142/49628 query[A] pool.ntp.org from 172.30.55.142
+Nov  2 16:43:15 dnsmasq[36741]: 23 172.30.55.142/49628 config pool.ntp.org is 172.30.55.1
+Nov  2 16:43:42 dnsmasq[36741]: 24 172.30.55.142/47300 query[A] time.nist.gov from 172.30.55.142
+Nov  2 16:43:42 dnsmasq[36741]: 24 172.30.55.142/47300 config time.nist.gov is 172.30.55.1
+Nov  2 16:44:09 dnsmasq[36741]: 25 172.30.55.142/59997 query[A] pool.ntp.org from 172.30.55.142
+Nov  2 16:44:09 dnsmasq[36741]: 25 172.30.55.142/59997 config pool.ntp.org is 172.30.55.1
+Nov  2 16:44:36 dnsmasq[36741]: 26 172.30.55.142/42355 query[A] time.nist.gov from 172.30.55.142
+Nov  2 16:44:36 dnsmasq[36741]: 26 172.30.55.142/42355 config time.nist.gov is 172.30.55.1
+Nov  2 16:45:03 dnsmasq[36741]: 27 172.30.55.142/54157 query[A] pool.ntp.org from 172.30.55.142
+Nov  2 16:45:03 dnsmasq[36741]: 27 172.30.55.142/54157 config pool.ntp.org is 172.30.55.1
+Nov  2 16:45:30 dnsmasq[36741]: 28 172.30.55.142/33023 query[A] time.nist.gov from 172.30.55.142
+Nov  2 16:45:30 dnsmasq[36741]: 28 172.30.55.142/33023 config time.nist.gov is 172.30.55.1
+Nov  2 16:45:57 dnsmasq[36741]: 29 172.30.55.142/54627 query[A] pool.ntp.org from 172.30.55.142
+Nov  2 16:45:57 dnsmasq[36741]: 29 172.30.55.142/54627 config pool.ntp.org is 172.30.55.1
+Nov  2 16:46:24 dnsmasq[36741]: 30 172.30.55.142/38342 query[A] time.nist.gov from 172.30.55.142
+Nov  2 16:46:24 dnsmasq[36741]: 30 172.30.55.142/38342 config time.nist.gov is 172.30.55.1
+Nov  2 16:46:37 dnsmasq[36741]: exiting on receipt of SIGTERM

@@ -1,0 +1,20 @@
+# Nmap 7.991 scan initiated Mon Nov  2 17:30:57 2026 as: /nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sS -p- -T4 --min-rate 2000 -sV --version-light -oA scans/lan-default-tcp 192.168.1.1
+Nmap scan report for 192.168.1.1
+Host is up (0.0032s latency).
+Not shown: 65525 closed tcp ports (reset)
+PORT      STATE SERVICE        VERSION
+53/tcp    open  domain         dnsmasq 2.72test3
+80/tcp    open  http           DD-WRT milli_httpd
+515/tcp   open  printer?
+3394/tcp  open  d2k-tapestry2?
+3838/tcp  open  sos?
+5473/tcp  open  apsolab-tags?
+9100/tcp  open  jetdirect?
+9998/tcp  open  tcpwrapped
+18017/tcp open  http           Asus wanduck WAN monitor httpd
+39974/tcp open  upnp           MiniUPnP 1.4 (Asus; UPnP 1.0)
+MAC Address: e0:3f:49:XX:XX:6C (ASUSTek Computer)
+Service Info: OS: Linux; Devices: WAP, broadband router; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Nov  2 17:31:43 2026 -- 1 IP address (1 host up) scanned in 46.35 seconds

@@ -1,0 +1,4 @@
+# Nmap 7.991 scan initiated Mon Nov  2 16:38:36 2026 as: /nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sS -p- -T4 --min-rate 2000 -sV --version-light -O -oA scans/wan-tcp 172.30.55.142
+Host: 172.30.55.142 ()	Status: Up
+Host: 172.30.55.142 ()	Ports: 80/open/tcp//http//D-Link N55U DSL router http config/, 515/open/tcp//printer?///, 3394/open/tcp//d2k-tapestry2?///, 3838/open/tcp//sos?///, 5473/open/tcp//apsolab-tags?///, 9100/open/tcp//jetdirect?///, 9998/open/tcp//tcpwrapped///, 18017/open/tcp//http//Asus wanduck WAN monitor httpd/, 45677/open/tcp//upnp//MiniUPnP 1.4 (Asus; UPnP 1.0)/	Ignored State: closed (65526)	OS: Linux 2.6.13 - 2.6.32	Seq Index: 197	IP ID Seq: All zeros
+# Nmap done at Mon Nov  2 16:39:22 2026 -- 1 IP address (1 host up) scanned in 46.73 seconds

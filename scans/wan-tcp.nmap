@@ -1,0 +1,24 @@
+# Nmap 7.991 scan initiated Mon Nov  2 16:38:36 2026 as: /nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sS -p- -T4 --min-rate 2000 -sV --version-light -O -oA scans/wan-tcp 172.30.55.142
+Nmap scan report for 172.30.55.142
+Host is up (0.00061s latency).
+Not shown: 65526 closed tcp ports (reset)
+PORT      STATE SERVICE        VERSION
+80/tcp    open  http           D-Link N55U DSL router http config
+515/tcp   open  printer?
+3394/tcp  open  d2k-tapestry2?
+3838/tcp  open  sos?
+5473/tcp  open  apsolab-tags?
+9100/tcp  open  jetdirect?
+9998/tcp  open  tcpwrapped
+18017/tcp open  http           Asus wanduck WAN monitor httpd
+45677/tcp open  upnp           MiniUPnP 1.4 (Asus; UPnP 1.0)
+MAC Address: e0:3f:49:XX:XX:68 (ASUSTek Computer)
+Device type: general purpose
+Running: Linux 2.6.X
+OS CPE: cpe:/o:linux:linux_kernel:2.6
+OS details: Linux 2.6.13 - 2.6.32
+Network Distance: 1 hop
+Service Info: Device: broadband router; CPE: cpe:/h:dlink:n55u
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Nov  2 16:39:22 2026 -- 1 IP address (1 host up) scanned in 46.73 seconds

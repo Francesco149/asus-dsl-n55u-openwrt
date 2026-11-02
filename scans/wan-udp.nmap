@@ -1,0 +1,49 @@
+# Nmap 7.991 scan initiated Mon Nov  2 16:39:59 2026 as: /nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sU -sV --version-light -p 53,67,69,123,137,138,161,1900,5351,5353,9999,18018,38400 -oA scans/wan-udp 172.30.55.142
+Nmap scan report for 172.30.55.142
+Host is up (0.0029s latency).
+
+PORT      STATE         SERVICE     VERSION
+53/udp    open|filtered domain
+67/udp    open|filtered dhcps
+69/udp    closed        tftp
+123/udp   closed        ntp
+137/udp   closed        netbios-ns
+138/udp   closed        netbios-dgm
+161/udp   open|filtered snmp
+1900/udp  open          upnp?
+5351/udp  closed        nat-pmp
+5353/udp  closed        zeroconf
+9999/udp  open|filtered distinct
+18018/udp open          unknown
+38400/udp open|filtered unknown
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port1900-UDP:V=7.991%I=2%D=11/2%Time=6AE8AEDC%P=x86_64-pc-linux-gnu%r(U
+SF:PNP_MSEARCH,8EA,"HTTP/1\.1\x20200\x20OK\r\nCACHE-CONTROL:\x20max-age=12
+SF:0\r\nST:\x20upnp:rootdevice\r\nUSN:\x20uuid:00000000-0000-0000-0000-000
+SF:000000000::upnp:rootdevice\r\nEXT:\r\nSERVER:\x20ASUSTeK\x20UPnP/1\.0\x
+SF:20MiniUPnPd/1\.4\r\nLOCATION:\x20http://192\.168\.2\.1:45677/rootDesc\.
+SF:xml\r\n\r\nHTTP/1\.1\x20200\x20OK\r\nCACHE-CONTROL:\x20max-age=120\r\nS
+SF:T:\x20urn:schemas-upnp-org:device:InternetGatewayDevice:1\r\nUSN:\x20uu
+SF:id:00000000-0000-0000-0000-000000000000::urn:schemas-upnp-org:device:In
+SF:ternetGatewayDevice:1\r\nEXT:\r\nSERVER:\x20ASUSTeK\x20UPnP/1\.0\x20Min
+SF:iUPnPd/1\.4\r\nLOCATION:\x20http://192\.168\.2\.1:45677/rootDesc\.xml\r
+SF:\n\r\nHTTP/1\.1\x20200\x20OK\r\nCACHE-CONTROL:\x20max-age=120\r\nST:\x2
+SF:0urn:schemas-upnp-org:device:WANConnectionDevice:1\r\nUSN:\x20uuid:ee03
+SF:2a74-7827-4203-9395-429000000000::urn:schemas-upnp-org:device:WANConnec
+SF:tionDevice:1\r\nEXT:\r\nSERVER:\x20ASUSTeK\x20UPnP/1\.0\x20MiniUPnPd/1\
+SF:.4\r\nLOCATION:\x20http://192\.168\.2\.1:45677/rootDesc\.xml\r\n\r\nHTT
+SF:P/1\.1\x20200\x20OK\r\nCACHE-CONTROL:\x20max-age=120\r\nST:\x20urn:sche
+SF:mas-upnp-org:device");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port18018-UDP:V=7.991%I=2%D=11/2%Time=6AE8AEDC%P=x86_64-pc-linux-gnu%r(
+SF:RPCCheck,21,"r\xfe\x85\x80\0\x01\0\x01\0\0\0\0\0\x01\x86\xa0\0\xc0\x0c\
+SF:0\x01\0\x01\0\0\0\0\0\x04\n\0\0\x01")%r(DNSVersionBindReq,2E,"\0\x06\x8
+SF:5\x80\0\x01\0\x01\0\0\0\0\x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x0
+SF:1\0\x01\0\0\0\0\0\x04\n\0\0\x01")%r(DTLSSessionReq,23,"\x16\xfe\x85\x80
+SF:\0\x01\0\x01\0\0\0\x006\x01\0\0\*\0\0\xc0\x0c\0\x01\0\x01\0\0\0\0\0\x04
+SF:\n\0\0\x01");
+MAC Address: e0:3f:49:XX:XX:68 (ASUSTek Computer)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Nov  2 16:40:27 2026 -- 1 IP address (1 host up) scanned in 28.65 seconds

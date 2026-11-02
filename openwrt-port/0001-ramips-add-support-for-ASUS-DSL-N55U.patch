@@ -1,0 +1,236 @@
+diff --git a/target/linux/ramips/dts/rt3662_asus_dsl-n55u.dts b/target/linux/ramips/dts/rt3662_asus_dsl-n55u.dts
+new file mode 100644
+index 0000000..7cc3743
+--- /dev/null
++++ b/target/linux/ramips/dts/rt3662_asus_dsl-n55u.dts
+@@ -0,0 +1,181 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/*
++ * ASUS DSL-N55U (HW A1/B1): RT-N56U-class board (RT3662F + RT3092) with an
++ * RTL8367R-VB switch and a TrendChip TC3162LE DSL co-processor hung off switch
++ * port 0. The DSL side is not supported; the board works as a 4-port
++ * router/AP.
++ *
++ * Board data cross-checked against ASUS GPL 3.0.0.4.376_2736:
++ *  - switch SMI bit-banged on GPIO23 (SCK) / GPIO22 (SDA), CPU on EXT1,
++ *    RGMII tx delay 1 / rx delay 2 (drivers/char/rtl8367r_drv.c)
++ *  - reset GPIO3, WPS GPIO26, power LED GPIO0, WAN LED GPIO25,
++ *    wifi on/off switch GPIO1 (rc/init.c, U-Boot gpio.c)
++ *  - stock GPIOMODE 0x189f: i2c, spi, uartf, mdio groups as GPIO
++ *
++ * Verified on hardware (OpenWrt 25.12.6): RTL8367R-VB detected, cpu_port 5 -> extif1,
++ * LAN label 1 = switch port 4, DSL co-processor on port 0 (100M), both radios AP-ENABLED.
++ * Not mapped yet: the Wi-Fi slide switch on GPIO1 (reads 0 = "on", 1 = "off").
++ */
++
++#include "rt3883.dtsi"
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
++
++/ {
++	compatible = "asus,dsl-n55u", "ralink,rt3662-soc", "ralink,rt3883-soc";
++	model = "ASUS DSL-N55U";
++
++	aliases {
++		led-boot = &led_power;
++		led-failsafe = &led_power;
++		led-running = &led_power;
++		led-upgrade = &led_power;
++	};
++
++	flash@1c000000 {
++		compatible = "cfi-flash";
++		reg = <0x1c000000 0x800000>;
++		bank-width = <2>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				reg = <0x0 0x0030000>;
++				label = "u-boot";
++				read-only;
++			};
++
++			partition@30000 {
++				reg = <0x00030000 0x00010000>;
++				label = "nvram";
++				read-only;
++			};
++
++			partition@40000 {
++				reg = <0x00040000 0x00010000>;
++				label = "factory";
++				read-only;
++
++				nvmem-layout {
++					compatible = "fixed-layout";
++					#address-cells = <1>;
++					#size-cells = <1>;
++
++					eeprom_factory_0: eeprom@0 {
++						reg = <0x0 0x200>;
++					};
++
++					eeprom_factory_8000: eeprom@8000 {
++						reg = <0x8000 0x200>;
++					};
++
++					macaddr_factory_4: macaddr@4 {
++						reg = <0x4 0x6>;
++					};
++				};
++			};
++
++			partition@50000 {
++				compatible = "denx,uimage";
++				reg = <0x00050000 0x007b0000>;
++				label = "firmware";
++			};
++		};
++	};
++
++	rtl8367rb {
++		compatible = "realtek,rtl8367b";
++		gpio-sda = <&gpio0 22 GPIO_ACTIVE_HIGH>;
++		gpio-sck = <&gpio0 23 GPIO_ACTIVE_HIGH>;
++		/* cpu_port 5 == extif1 on RTL8367R-VB; txdelay 1, rxdelay 2, RGMII, forced 1000/full */
++		realtek,extif = <5 1 2 1 1 1 1 1 1 2>;
++	};
++
++	keys {
++		compatible = "gpio-keys";
++
++		reset {
++			label = "reset";
++			gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_RESTART>;
++		};
++
++		wps {
++			label = "wps";
++			gpios = <&gpio1 2 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_WPS_BUTTON>;
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led_power: power {
++			function = LED_FUNCTION_POWER;
++			color = <LED_COLOR_ID_BLUE>;
++			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
++		};
++
++		wan {
++			function = LED_FUNCTION_WAN;
++			color = <LED_COLOR_ID_BLUE>;
++			gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
++		};
++	};
++};
++
++&gpio1 {
++	status = "okay";
++};
++
++&state_default {
++	gpio {
++		groups = "i2c", "spi", "uartf", "mdio";
++		function = "gpio";
++	};
++};
++
++&ethernet {
++	nvmem-cells = <&macaddr_factory_4>;
++	nvmem-cell-names = "mac-address";
++
++	port@0 {
++		mediatek,fixed-link = <1000 1 1 1>;
++	};
++};
++
++&pci {
++	status = "okay";
++};
++
++/* RT3092 (PCI id 1814:3091): 2.4 GHz */
++&pci1 {
++	status = "okay";
++
++	wifi@1,0 {
++		compatible = "pci1814,3091";
++		reg = <0x10000 0 0 0 0>;
++		nvmem-cells = <&eeprom_factory_8000>;
++		nvmem-cell-names = "eeprom";
++	};
++};
++
++/* RT3662 on-SoC radio: 5 GHz */
++&wmac {
++	ralink,2ghz = <0>;
++	nvmem-cells = <&eeprom_factory_0>;
++	nvmem-cell-names = "eeprom";
++};
++
++&ehci {
++	status = "okay";
++};
++
++&ohci {
++	status = "okay";
++};
+diff --git a/target/linux/ramips/image/rt3883.mk b/target/linux/ramips/image/rt3883.mk
+index 1728f84..0ef96e1 100644
+--- a/target/linux/ramips/image/rt3883.mk
++++ b/target/linux/ramips/image/rt3883.mk
+@@ -5,6 +5,17 @@ define Build/mkrtn56uimg
+ 	$(STAGING_DIR_HOST)/bin/mkrtn56uimg $(1) $@
+ endef
+ 
++define Device/asus_dsl-n55u
++  SOC := rt3662
++  IMAGE_SIZE := 7872k
++  IMAGE/sysupgrade.bin := $$(sysupgrade_bin) | check-size | \
++	mkrtn56uimg -s | append-metadata
++  DEVICE_VENDOR := ASUS
++  DEVICE_MODEL := DSL-N55U
++  DEVICE_PACKAGES := kmod-usb-ohci kmod-usb2
++endef
++TARGET_DEVICES += asus_dsl-n55u
++
+ define Device/asus_rt-n56u
+   SOC := rt3662
+   IMAGE_SIZE := 7872k
+diff --git a/target/linux/ramips/rt3883/base-files/etc/board.d/02_network b/target/linux/ramips/rt3883/base-files/etc/board.d/02_network
+index 519afe6..c2f6eb2 100644
+--- a/target/linux/ramips/rt3883/base-files/etc/board.d/02_network
++++ b/target/linux/ramips/rt3883/base-files/etc/board.d/02_network
+@@ -8,6 +8,12 @@ ramips_setup_interfaces()
+ 	local board="$1"
+ 
+ 	case $board in
++	asus,dsl-n55u)
++		# port 0 is the TrendChip DSL co-processor (100M link): keep it out of the LAN.
++		# Front label LAN1 = switch port 4 (verified); the rest assumed to run in reverse.
++		ucidef_add_switch "switch0" \
++			"4:lan:1" "3:lan:2" "2:lan:3" "1:lan:4" "5@eth0"
++		;;
+ 	asus,rt-n56u)
+ 		ucidef_add_switch "switch0" \
+ 			"0:lan" "1:lan" "2:lan" "3:lan" "4:wan" "8@eth0"
+@@ -50,6 +56,9 @@ ramips_setup_macs()
+ 	local label_mac=""
+ 
+ 	case $board in
++	asus,dsl-n55u)
++		label_mac=$(mtd_get_mac_binary factory 0x4)
++		;;
+ 	asus,rt-n56u)
+ 		lan_mac=$(macaddr_setbit_la "$(cat /sys/class/net/eth0/address)")
+ 		wan_mac=$(mtd_get_mac_binary factory 0x8004)

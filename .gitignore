@@ -1,0 +1,27 @@
+# Vendor downloads and everything derived from them (re-fetch with scripts/fetch-firmware.sh,
+# re-extract with scripts/extract.sh / see docs/02-stock-firmware.md)
+/firmware/dl/
+/firmware/gpl/
+/firmware/x/
+/firmware/uboot-src/
+
+# OpenWrt checkout + build output (6+ GB). The port lives in openwrt-port/ as a patch.
+/openwrt/
+
+# Device-specific dumps and secrets. KEEP A COPY OF backup/ SOMEWHERE SAFE:
+# backup/flash/mtd2_Factory.bin holds this unit's Wi-Fi calibration + MACs and cannot be recreated.
+# nvram dump contains the (plaintext) admin password and the WPS PIN.
+/backup/
+
+# runtime state / large captures
+/.run/
+*.pcap
+result
+
+# ASUS-owned web UI pages fetched from the stock firmware: kept local, recorded by hash in loot/MANIFEST.md
+/loot/*
+!/loot/MANIFEST.md
+!/loot/live/
+
+# upstream OpenWrt reference device trees (fetch from openwrt.git target/linux/ramips/dts/)
+/openwrt-ref/

@@ -1,0 +1,4 @@
+# Nmap 7.991 scan initiated Mon Nov  2 16:39:59 2026 as: /nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sU -sV --version-light -p 53,67,69,123,137,138,161,1900,5351,5353,9999,18018,38400 -oA scans/wan-udp 172.30.55.142
+Host: 172.30.55.142 ()	Status: Up
+Host: 172.30.55.142 ()	Ports: 53/open|filtered/udp//domain///, 67/open|filtered/udp//dhcps///, 69/closed/udp//tftp///, 123/closed/udp//ntp///, 137/closed/udp//netbios-ns///, 138/closed/udp//netbios-dgm///, 161/open|filtered/udp//snmp///, 1900/open/udp//upnp?///, 5351/closed/udp//nat-pmp///, 5353/closed/udp//zeroconf///, 9999/open|filtered/udp//distinct///, 18018/open/udp//unknown///, 38400/open|filtered/udp/////
+# Nmap done at Mon Nov  2 16:40:27 2026 -- 1 IP address (1 host up) scanned in 28.65 seconds

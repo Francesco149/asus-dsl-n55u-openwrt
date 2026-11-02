@@ -1,0 +1,21 @@
+# Nmap 7.991 scan initiated Mon Nov  2 17:31:43 2026 as: /nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sU -p 53,67,69,123,137,138,161,1900,5351,5353,9999,18018,38400 -oA scans/lan-default-udp 192.168.1.1
+Nmap scan report for 192.168.1.1
+Host is up (0.0013s latency).
+
+PORT      STATE         SERVICE
+53/udp    open          domain
+67/udp    open          dhcps
+69/udp    closed        tftp
+123/udp   closed        ntp
+137/udp   closed        netbios-ns
+138/udp   closed        netbios-dgm
+161/udp   closed        snmp
+1900/udp  open          upnp
+5351/udp  open          nat-pmp
+5353/udp  closed        zeroconf
+9999/udp  open|filtered distinct
+18018/udp open|filtered unknown
+38400/udp closed        unknown
+MAC Address: e0:3f:49:XX:XX:6C (ASUSTek Computer)
+
+# Nmap done at Mon Nov  2 17:31:51 2026 -- 1 IP address (1 host up) scanned in 8.11 seconds

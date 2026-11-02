@@ -1,0 +1,7 @@
+dsl-n55u devshell: iface=enp3s0 target=192.168.1.1
+raw-socket tools need root: sudo $(command -v tcpdump) ...
+19:26:55.297 carrier=1
+19:27:12.583 carrier=0
+19:27:40.614 carrier=1
+19:33:13.825 carrier=0
+19:33:37.160 carrier=1

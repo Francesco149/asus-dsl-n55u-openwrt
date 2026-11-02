@@ -1,0 +1,35 @@
+-sh: id: not found
+Linux DSL-N55U 2.6.2219 #6 Mon Jan 12 14:42:49 CST 2015 mips GNU/Linux
+
+admin@DSL-N55U:/tmp/home/root# cat /proc/cpuinfo; echo; echo __END1__
+system type             : Ralink SoC
+processor               : 0
+cpu model               : MIPS 74K V4.12
+BogoMIPS                : 249.34
+wait instruction        : yes
+microsecond timers      : yes
+tlb_entries             : 32
+extra interrupt vector  : yes
+hardware watchpoint     : yes
+ASEs implemented        : mips16 dsp
+VCED exceptions         : not available
+VCEI exceptions         : not available
+
+
+admin@DSL-N55U:/tmp/home/root# cat /proc/mtd; echo; echo __END2__
+dev:    size   erasesize  name
+mtd0: 00030000 00010000 "Bootloader"
+mtd1: 00010000 00010000 "nvram"
+mtd2: 00010000 00010000 "Factory"
+mtd3: 007b0000 00010000 "linux"
+mtd4: 006ba500 00010000 "rootfs"
+
+admin@DSL-N55U:/tmp/home/root# free; echo; echo __END3__
+              total         used         free       shared      buffers
+  Mem:       125844        30368        95476            0         3752
+ Swap:            0            0            0
+Total:       125844        30368        95476
+
+admin@DSL-N55U:/tmp/home/root# cat /proc/cmdline; echo; echo __END4__
+console=ttyS1,57600n8 root=/dev/mtdblock4 rootfstype=squashfs noinitrd
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.991 scan initiated Mon Nov  2 16:39:59 2026 as: /nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sU -sV -&#45;version-light -p 53,67,69,123,137,138,161,1900,5351,5353,9999,18018,38400 -oA scans/wan-udp 172.30.55.142 -->
+<nmaprun scanner="nmap" args="/nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sU -sV -&#45;version-light -p 53,67,69,123,137,138,161,1900,5351,5353,9999,18018,38400 -oA scans/wan-udp 172.30.55.142" start="1793633999" startstr="Mon Nov  2 16:39:59 2026" version="7.991" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="13" services="53,67,69,123,137-138,161,1900,5351,5353,9999,18018,38400"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.30.55.142" addrtype="ipv4"/>
+<address addr="e0:3f:49:XX:XX:68" addrtype="mac" vendor="ASUSTek Computer"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1793634003" endtime="1793634027"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.30.55.142" addrtype="ipv4"/>
+<address addr="e0:3f:49:XX:XX:68" addrtype="mac" vendor="ASUSTek Computer"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="udp" portid="67"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcps" method="table" conf="3"/></port>
+<port protocol="udp" portid="69"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="tftp" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="ntp" method="table" conf="3"/></port>
+<port protocol="udp" portid="137"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="netbios-ns" method="table" conf="3"/></port>
+<port protocol="udp" portid="138"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="netbios-dgm" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="1900"><state state="open" reason="udp-response" reason_ttl="64"/><service name="upnp" servicefp="SF-Port1900-UDP:V=7.991%I=2%D=11/2%Time=6AE8AEDC%P=x86_64-pc-linux-gnu%r(UPNP_MSEARCH,8EA,&quot;HTTP/1\.1\x20200\x20OK\r\nCACHE-CONTROL:\x20max-age=120\r\nST:\x20upnp:rootdevice\r\nUSN:\x20uuid:00000000-0000-0000-0000-000000000000::upnp:rootdevice\r\nEXT:\r\nSERVER:\x20ASUSTeK\x20UPnP/1\.0\x20MiniUPnPd/1\.4\r\nLOCATION:\x20http://192\.168\.2\.1:45677/rootDesc\.xml\r\n\r\nHTTP/1\.1\x20200\x20OK\r\nCACHE-CONTROL:\x20max-age=120\r\nST:\x20urn:schemas-upnp-org:device:InternetGatewayDevice:1\r\nUSN:\x20uuid:00000000-0000-0000-0000-000000000000::urn:schemas-upnp-org:device:InternetGatewayDevice:1\r\nEXT:\r\nSERVER:\x20ASUSTeK\x20UPnP/1\.0\x20MiniUPnPd/1\.4\r\nLOCATION:\x20http://192\.168\.2\.1:45677/rootDesc\.xml\r\n\r\nHTTP/1\.1\x20200\x20OK\r\nCACHE-CONTROL:\x20max-age=120\r\nST:\x20urn:schemas-upnp-org:device:WANConnectionDevice:1\r\nUSN:\x20uuid:00000000-0000-0000-0000-000000000000::urn:schemas-upnp-org:device:WANConnectionDevice:1\r\nEXT:\r\nSERVER:\x20ASUSTeK\x20UPnP/1\.0\x20MiniUPnPd/1\.4\r\nLOCATION:\x20http://192\.168\.2\.1:45677/rootDesc\.xml\r\n\r\nHTTP/1\.1\x20200\x20OK\r\nCACHE-CONTROL:\x20max-age=120\r\nST:\x20urn:schemas-upnp-org:device&quot;);" method="table" conf="3"/></port>
+<port protocol="udp" portid="5351"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="nat-pmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="5353"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="zeroconf" method="table" conf="3"/></port>
+<port protocol="udp" portid="9999"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="distinct" method="table" conf="3"/></port>
+<port protocol="udp" portid="18018"><state state="open" reason="udp-response" reason_ttl="0"/><service name="unknown" servicefp="SF-Port18018-UDP:V=7.991%I=2%D=11/2%Time=6AE8AEDC%P=x86_64-pc-linux-gnu%r(RPCCheck,21,&quot;r\xfe\x85\x80\0\x01\0\x01\0\0\0\0\0\x01\x86\xa0\0\xc0\x0c\0\x01\0\x01\0\0\0\0\0\x04\n\0\0\x01&quot;)%r(DNSVersionBindReq,2E,&quot;\0\x06\x85\x80\0\x01\0\x01\0\0\0\0\x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x01\0\x01\0\0\0\0\0\x04\n\0\0\x01&quot;)%r(DTLSSessionReq,23,&quot;\x16\xfe\x85\x80\0\x01\0\x01\0\0\0\x006\x01\0\0\*\0\0\xc0\x0c\0\x01\0\x01\0\0\0\0\0\x04\n\0\0\x01&quot;);" method="table" conf="3"/></port>
+<port protocol="udp" portid="38400"><state state="open|filtered" reason="no-response" reason_ttl="0"/></port>
+</ports>
+<times srtt="2855" rttvar="5578" to="100000"/>
+</host>
+<runstats><finished time="1793634027" timestr="Mon Nov  2 16:40:27 2026" summary="Nmap done at Mon Nov  2 16:40:27 2026; 1 IP address (1 host up) scanned in 28.65 seconds" elapsed="28.65" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

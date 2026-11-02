@@ -1,0 +1,4 @@
+# Nmap 7.991 scan initiated Mon Nov  2 17:30:57 2026 as: /nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sS -p- -T4 --min-rate 2000 -sV --version-light -oA scans/lan-default-tcp 192.168.1.1
+Host: 192.168.1.1 ()	Status: Up
+Host: 192.168.1.1 ()	Ports: 53/open/tcp//domain//dnsmasq 2.72test3/, 80/open/tcp//http//DD-WRT milli_httpd/, 515/open/tcp//printer?///, 3394/open/tcp//d2k-tapestry2?///, 3838/open/tcp//sos?///, 5473/open/tcp//apsolab-tags?///, 9100/open/tcp//jetdirect?///, 9998/open/tcp//tcpwrapped///, 18017/open/tcp//http//Asus wanduck WAN monitor httpd/, 39974/open/tcp//upnp//MiniUPnP 1.4 (Asus; UPnP 1.0)/	Ignored State: closed (65525)
+# Nmap done at Mon Nov  2 17:31:43 2026 -- 1 IP address (1 host up) scanned in 46.35 seconds

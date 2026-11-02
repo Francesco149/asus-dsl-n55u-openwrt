@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.991 scan initiated Mon Nov  2 17:31:43 2026 as: /nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sU -p 53,67,69,123,137,138,161,1900,5351,5353,9999,18018,38400 -oA scans/lan-default-udp 192.168.1.1 -->
+<nmaprun scanner="nmap" args="/nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sU -p 53,67,69,123,137,138,161,1900,5351,5353,9999,18018,38400 -oA scans/lan-default-udp 192.168.1.1" start="1793637103" startstr="Mon Nov  2 17:31:43 2026" version="7.991" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="13" services="53,67,69,123,137-138,161,1900,5351,5353,9999,18018,38400"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.1" addrtype="ipv4"/>
+<address addr="e0:3f:49:XX:XX:6C" addrtype="mac" vendor="ASUSTek Computer"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1793637108" endtime="1793637111"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.1" addrtype="ipv4"/>
+<address addr="e0:3f:49:XX:XX:6C" addrtype="mac" vendor="ASUSTek Computer"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="udp" portid="53"><state state="open" reason="udp-response" reason_ttl="64"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="udp" portid="67"><state state="open" reason="udp-response" reason_ttl="64"/><service name="dhcps" method="table" conf="3"/></port>
+<port protocol="udp" portid="69"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="tftp" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="ntp" method="table" conf="3"/></port>
+<port protocol="udp" portid="137"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="netbios-ns" method="table" conf="3"/></port>
+<port protocol="udp" portid="138"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="netbios-dgm" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="snmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="1900"><state state="open" reason="udp-response" reason_ttl="64"/><service name="upnp" method="table" conf="3"/></port>
+<port protocol="udp" portid="5351"><state state="open" reason="udp-response" reason_ttl="64"/><service name="nat-pmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="5353"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="zeroconf" method="table" conf="3"/></port>
+<port protocol="udp" portid="9999"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="distinct" method="table" conf="3"/></port>
+<port protocol="udp" portid="18018"><state state="open|filtered" reason="no-response" reason_ttl="0"/></port>
+<port protocol="udp" portid="38400"><state state="closed" reason="port-unreach" reason_ttl="64"/></port>
+</ports>
+<times srtt="1297" rttvar="1657" to="100000"/>
+</host>
+<runstats><finished time="1793637111" timestr="Mon Nov  2 17:31:51 2026" summary="Nmap done at Mon Nov  2 17:31:51 2026; 1 IP address (1 host up) scanned in 8.11 seconds" elapsed="8.11" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

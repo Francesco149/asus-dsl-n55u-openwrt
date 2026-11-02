@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.991 scan initiated Mon Nov  2 16:38:36 2026 as: /nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sS -p- -T4 -&#45;min-rate 2000 -sV -&#45;version-light -O -oA scans/wan-tcp 172.30.55.142 -->
+<nmaprun scanner="nmap" args="/nix/store/7yj1z0pwk0265nqpy15asp5jlspg83b8-nmap-7.991/bin/nmap -e enp3s0 -Pn -sS -p- -T4 -&#45;min-rate 2000 -sV -&#45;version-light -O -oA scans/wan-tcp 172.30.55.142" start="1793633916" startstr="Mon Nov  2 16:38:36 2026" version="7.991" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.30.55.142" addrtype="ipv4"/>
+<address addr="e0:3f:49:XX:XX:68" addrtype="mac" vendor="ASUSTek Computer"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1793633920" endtime="1793633962"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="172.30.55.142" addrtype="ipv4"/>
+<address addr="e0:3f:49:XX:XX:68" addrtype="mac" vendor="ASUSTek Computer"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65526">
+<extrareasons reason="reset" count="65526" proto="tcp" ports="1-79,81-514,516-3393,3395-3837,3839-5472,5474-9099,9101-9997,9999-18016,18018-45676,45678-65535"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="D-Link N55U DSL router http config" devicetype="broadband router" method="probed" conf="10"><cpe>cpe:/h:dlink:n55u</cpe></service></port>
+<port protocol="tcp" portid="515"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="printer" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3394"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="d2k-tapestry2" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3838"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="sos" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5473"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="apsolab-tags" method="table" conf="3"/></port>
+<port protocol="tcp" portid="9100"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="jetdirect" method="table" conf="3"/></port>
+<port protocol="tcp" portid="9998"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="18017"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Asus wanduck WAN monitor httpd" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="45677"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="upnp" product="MiniUPnP" version="1.4" extrainfo="Asus; UPnP 1.0" devicetype="broadband router" method="probed" conf="10"><cpe>cpe:/a:miniupnp_project:miniupnpd:1.4</cpe></service></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="80"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<portused state="closed" proto="udp" portid="43125"/>
+<osmatch name="Linux 2.6.13 - 2.6.32" accuracy="100" line="51684">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="403" lastboot="Mon Nov  2 16:32:39 2026"/>
+<distance value="1"/>
+<tcpsequence index="197" difficulty="Good luck!" values="C5E9C176,C5F34E25,C5DA421B,C5DC20C9,C60E1A35,C6707B03"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="other" values="188BA,188D3,188EC,18905,1891E,18937"/>
+<times srtt="607" rttvar="498" to="100000"/>
+</host>
+<runstats><finished time="1793633962" timestr="Mon Nov  2 16:39:22 2026" summary="Nmap done at Mon Nov  2 16:39:22 2026; 1 IP address (1 host up) scanned in 46.73 seconds" elapsed="46.73" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

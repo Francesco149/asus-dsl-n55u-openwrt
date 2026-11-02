@@ -1,0 +1,20 @@
+#!/bin/sh
+# First-boot fallback access for the DSL-N55U bring-up image:
+# enable every radio with a WPA2 AP bridged to LAN, in case the switch
+# (and therefore all wired ports) does not come up.
+for r in $(uci -q show wireless | sed -n 's/^wireless\.\([^.=]*\)=wifi-device$/\1/p'); do
+	uci set wireless.$r.disabled='0'
+	# regulatory domain (substituted by apply.sh from $WIFI_COUNTRY; empty = keep the world default)
+	[ -n "__WIFI_COUNTRY__" ] && uci set wireless.$r.country='__WIFI_COUNTRY__'
+done
+for i in $(uci -q show wireless | sed -n 's/^wireless\.\([^.=]*\)=wifi-iface$/\1/p'); do
+	uci set wireless.$i.ssid='DSL-N55U-setup'
+	uci set wireless.$i.encryption='psk2'
+	uci set wireless.$i.key='__FALLBACK_PSK__'
+	uci set wireless.$i.network='lan'
+	uci set wireless.$i.mode='ap'
+	# OpenWrt >= 24.10 disables the default wifi-iface sections, not just the radios
+	uci set wireless.$i.disabled='0'
+done
+uci commit wireless
+exit 0
