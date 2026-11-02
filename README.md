@@ -206,7 +206,10 @@ flake.nix              devShell
 ## 10. Upstream status
 
 As of 2026-11-02 the DSL-N55U is **not** in OpenWrt and has never been submitted: there are no `openwrt/openwrt` PRs,
-issues or code mentioning it, and nothing on openwrt-devel or patchwork. There is only the 2024 forum feature request. The device tree,
+issues or code mentioning it, and nothing on openwrt-devel or patchwork. There is only the 2024 forum feature request. An upstream commit is
+prepared on the fork branch [`Francesco149/openwrt:ramips-asus-dsl-n55u`](https://github.com/Francesco149/openwrt/tree/ramips-asus-dsl-n55u)
+(based on `main`, kernel 6.18 build-tested). The commit message and PR text are in [openwrt-port/UPSTREAM.md](openwrt-port/UPSTREAM.md).
+The device tree,
 image recipe and `02_network` hunk in `openwrt-port/` are written to be upstreamable. The bring-up uci-defaults and
 `diffconfig` are local conveniences, not upstream material.
 

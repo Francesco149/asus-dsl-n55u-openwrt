@@ -26,6 +26,10 @@ The DSL-N55U is essentially an RT-N56U with a different switch, no WAN port, and
 config is literally the RT-N56U one plus `DSL=y DUALWAN=y` (`src-ra/target.mak:44`), and the bootloader is the RT-N56U
 U-Boot (`Uboot.N56U`) with `#if DSL_N55U` blocks.
 
+Bottom label (our unit): `H/W Ver.: A1`, factory `F/W Ver.: 3.0.0.4.374`, and two MACs: **"MAC 2.4GHz" = Factory 0x8004**
+(`e0:3f:49:XX:XX:68`) and **"MAC 5GHz" = Factory 0x4** (`e0:3f:49:XX:XX:6c`, also the Ethernet base MAC). There is no separate LAN MAC.
+The label also prints the WPS PIN (= nvram `secret_code`) and the serial number; keep photos of it private.
+
 ## Flash map
 
 From `drivers/mtd/maps/ralink-flash.c` (GPL). It matches the live `/proc/mtd`:
@@ -85,7 +89,7 @@ From ASUS `rtl8367r_drv.c`:
 | Switch port | Connected to |
 |---|---|
 | 0 | TrendChip TC3162LE (DSL modem); stock reaches it via VLAN 1 / `eth2.1` and SVLANs `eth2.1.x` |
-| 1-4 | LAN ports. **Front label LAN1 = switch port 4** (verified under OpenWrt); the others presumably reversed (LAN4 = port 1) |
+| 1-4 | LAN ports, reversed: **front LAN1 = port 4, LAN2 = 3, LAN3 = 2, LAN4 = 1** (verified port by port) |
 | EXT1 (OpenWrt `cpu_port 5` on R-VB) | RT3662 GMAC1, RGMII, **tx delay 1 / rx delay 2**, forced 1000/full |
 
 Stock VLANs: `eth2.2` = LAN, `eth2.1` → DSL, `eth2.4` = Ethernet-WAN-on-a-LAN-port (dual-WAN option).

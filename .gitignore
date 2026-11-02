@@ -25,3 +25,6 @@ result
 
 # upstream OpenWrt reference device trees (fetch from openwrt.git target/linux/ramips/dts/)
 /openwrt-ref/
+
+# upstream submission work tree (OpenWrt main + fork remote)
+/upstream-openwrt/

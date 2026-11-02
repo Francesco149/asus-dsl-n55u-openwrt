@@ -94,6 +94,13 @@ Chronological record of the work, including dead ends and corrections. Times are
 - Slide switch tested live: off disables both APs, on re-enables them.
 - Upstream: nobody has submitted the DSL-N55U to OpenWrt (GitHub, openwrt-devel, patchwork searched).
 
+**Upstream prep (night)**
+- Forked openwrt/openwrt; branch `ramips-asus-dsl-n55u` on `main` (kernel 6.18). Adapted the DTS to `sda-gpios`/`sck-gpios`
+  (treewide rename), and the LAN MAC to RT-N56U-style `macaddr_setbit_la` (the 5 GHz WMAC shares factory 0x4). Full build test on main OK.
+- Verified front LAN1-4 = switch ports 4-1 with a detached link watcher while the user moved the cable. Label MACs read from the sticker.
+- Commit by Francesco Noferi with Signed-off-by; checkpatch: 0 errors, 1 warning (non-standard `Co-authored-by`). Pushed to the fork, not
+  submitted upstream.
+
 **Documentation**
 - Moved `NOTES.md` into `README.md` + `docs/`. Exported the OpenWrt port as `openwrt-port/` (patch + files + diffconfig + apply.sh).
   `git init` with a `.gitignore` that keeps vendor blobs, the OpenWrt checkout and `backup/` out of git.
