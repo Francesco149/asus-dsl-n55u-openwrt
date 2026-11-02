@@ -1,4 +1,8 @@
 #!/bin/sh
+# Only on a pristine install: uci-defaults from the image re-run after a sysupgrade that keeps
+# settings, and must not clobber the user's own wireless configuration.
+[ "$(uci -q get wireless.default_radio0.ssid)" = "OpenWrt" ] || exit 0
+
 # First-boot fallback access for the DSL-N55U bring-up image:
 # enable every radio with a WPA2 AP bridged to LAN, in case the switch
 # (and therefore all wired ports) does not come up.

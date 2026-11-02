@@ -76,6 +76,15 @@ Chronological record of the work, including dead ends and corrections. Times are
   enabled by hand on the device). With antennas off, only the 5 GHz AP was heard from the host. Wi-Fi switch polarity measured.
 - Rebuild with fixes (LAN labels, uci-defaults, DTS notes) started; `flash-openwrt.sh` reboot step fixed.
 
+**Publishing, SSH keys, upgrade (evening)**
+- Committed, redacted (MACs/BSSIDs, host MAC, UPnP UUID), ASUS web-UI pages replaced by a hash manifest, MIT LICENSE, and
+  published to GitHub.
+- Key login failed three ways: `ssh-copy-id` → wrong file for dropbear; Ghostty's ssh wrapper ate the piped stdin (wrote
+  terminfo into authorized_keys); dropbear built without Ed25519 on small_flash. Bridged with a temporary RSA key, set country IT
+  (5 GHz 23 dBm), and confirmed both bands from a client (2.4 GHz 89 %, 5 GHz 40 %, antennas on).
+- Rebuild with `CONFIG_DROPBEAR_ED25519=y` and a guarded bring-up script, installed via `sysupgrade` (settings kept, ~4 min):
+  Ed25519 login works, all settings survived, temporary RSA key removed.
+
 **Documentation**
 - Moved `NOTES.md` into `README.md` + `docs/`. Exported the OpenWrt port as `openwrt-port/` (patch + files + diffconfig + apply.sh).
   `git init` with a `.gitignore` that keeps vendor blobs, the OpenWrt checkout and `backup/` out of git.

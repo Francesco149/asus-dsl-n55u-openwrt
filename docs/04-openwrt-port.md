@@ -128,6 +128,28 @@ Rebuild #2 (same day) with the fixes (LAN labels `4:lan:1 … 1:lan:4`, uci-defa
 flashed yet.** Install it from the running OpenWrt with LuCI → System → Backup / Flash firmware, or `sysupgrade`. The device
 already has the uci fixes applied by hand.
 
+### Wi-Fi with antennas fitted, country set (verified)
+With the antennas on and `country IT` (`iw reg get` → `country IT: DFS-ETSI`; 5 GHz Tx rose from 20 to 23 dBm), a client scan
+shows both APs: 2.4 GHz BSSID `…:68` ch 1 at 89 %, 5 GHz BSSID `…:6c` ch 36 at 40 %, both WPA2. Both radios work.
+
+### SSH key auth and rebuild #3
+Ed25519 keys were refused: OpenWrt builds dropbear **without Ed25519 on `small_flash` targets** (rt3883 is one), so the
+server only offered an RSA host key and rejected every Ed25519 pubkey. Fix: `CONFIG_DROPBEAR_ED25519=y` in
+`openwrt-port/diffconfig`. A temporary RSA key bridged access in the meantime. Also hit: `ssh-copy-id` writes
+`/root/.ssh/authorized_keys`, which OpenWrt's dropbear ignores (it reads `/etc/dropbear/authorized_keys`), and Ghostty's ssh
+wrapper ate the stdin of a piped `cat keys | ssh` (see the README gotchas).
+
+The bring-up uci-defaults is now **guarded**: it only acts while `wireless.default_radio0.ssid` is still `OpenWrt`. Image
+uci-defaults re-run after a settings-preserving sysupgrade and must not reset the user's Wi-Fi.
+Rebuild #3: sha256 `65cb3ba4…95df32`, `uimage_check` ACCEPT, dropbear contains `ssh-ed25519`.
+
+**Installed via standard `sysupgrade` (settings kept): verified.** The image was piped to `/tmp` over SSH (OpenWrt has no
+sftp-server for modern `scp`), sha256-checked, and `sysupgrade -T` passed (`supported_devices` match). `sysupgrade -l` keep list
+included `/etc/dropbear/authorized_keys`, the dropbear host key, `/etc/shadow` and `/etc/config/{wireless,network,system}`.
+`sysupgrade -v`: "Commencing upgrade", then `ubus ... Connection failed` (normal, as procd takes over); link drop
+after ~2 min (flash written), and SSH was back ~4 min after the start. Afterwards: Ed25519 key login works, and country IT, the
+Wi-Fi config, the 8 keys and the root password all survived. The temporary RSA key was then removed (7 Ed25519 keys remain).
+
 ## After first boot: things to verify
 - `dmesg | grep -i rtl8367`: expect `RTL8367R-VB chip found` and `cpu_port:5, assigned to extif1`.
 - `swconfig dev switch0 show`, link on ports 1-4, and the physical LAN label ↔ switch port mapping.

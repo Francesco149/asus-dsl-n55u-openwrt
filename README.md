@@ -7,8 +7,8 @@ get there **without a serial console**, how to get back to stock, and what is wr
 Everything here was done on one physical unit in November 2026, and every claim is backed by source code, disassembly or
 an observation on that unit (see `docs/`). The logs and captures have device identifiers (MACs, UUIDs) redacted.
 
-> **Status:** OpenWrt runs. Wired LAN (switch), persistent overlay, LEDs, buttons and the 5 GHz AP are verified. The 2.4 GHz
-> AP comes up (`AP-ENABLED`, 20 dBm); RF reception from a client is still to be confirmed with antennas fitted.
+> **Status:** OpenWrt runs. Wired LAN (switch), persistent overlay, LEDs, buttons, and **both Wi-Fi bands** (2.4 GHz and
+> 5 GHz APs seen by a client) are verified on hardware.
 > DSL does **not** work under OpenWrt (the DSL modem is a separate TrendChip SoC). Use the unit as an AP / switch / small router.
 
 ---
@@ -31,8 +31,10 @@ bit-banged SMI, GPIO22/23) and an extra DSL co-processor on switch port 0. The s
 |---|---|
 | 4× gigabit LAN (RTL8367R-VB, swconfig) | ✅ front label LAN1 = switch port 4 |
 | 5 GHz (on-SoC RT3883, `rt2800soc`) | ✅ AP heard by clients |
-| 2.4 GHz (PCI RT3092, `rt2800pci`) | ⚠️ AP up, RX verified; client reception pending a re-test with antennas |
-| Flash / overlay | ✅ 2.25 MB jffs2 `rootfs_data`, upgrades via standard sysupgrade |
+| 2.4 GHz (PCI RT3092, `rt2800pci`) | ✅ AP heard by clients |
+| Flash / overlay | ✅ 2.25 MB jffs2 `rootfs_data` |
+| `sysupgrade` (keep settings) | ✅ verified: config, keys, password survive (~4 min) |
+| SSH Ed25519 keys | ✅ with `CONFIG_DROPBEAR_ED25519=y` (not in stock OpenWrt small-flash builds) |
 | LEDs (power, WAN), reset + WPS buttons | ✅ |
 | USB 2.0 ports | ❓ untested (kmods included) |
 | Wi-Fi on/off slide switch | ❌ not mapped yet (GPIO1, 0 = on) |
@@ -96,6 +98,14 @@ Details and the bootloader source analysis: [docs/03-bootloader-and-recovery.md]
   the foreground of a session that stays open.
 - Overwriting the running stock firmware: pre-read the whole stock rootfs into the page cache first (`flash-openwrt.sh` does)
   so nothing faults in from the flash being overwritten.
+- **SSH keys on the OpenWrt side** (three traps, all hit while bringing this unit up):
+  1. OpenWrt's dropbear reads root's keys **only from `/etc/dropbear/authorized_keys`**. `ssh-copy-id` writes
+     `/root/.ssh/authorized_keys`, which is ignored. Use LuCI → System → Administration → SSH-Keys, or append to the right file.
+  2. Stock OpenWrt builds dropbear **without Ed25519 on `small_flash` targets like this one**: Ed25519 keys are silently
+     refused and the server offers only an RSA host key. `openwrt-port/diffconfig` sets `CONFIG_DROPBEAR_ED25519=y`;
+     images built before that change only accept RSA keys.
+  3. Terminal SSH wrappers can eat stdin. Ghostty's shell integration ("Setting up xterm-ghostty terminfo") made
+     `cat keys | ssh host 'cat >> authorized_keys'` write terminfo text instead of keys. Use `command ssh` for piped commands.
 
 ## 6. Stock firmware security findings (summary)
 
